@@ -5,6 +5,26 @@ Original article on JetsonHacks: https://wp.me/p7ZgI9-1ac
 
 Install a swap file on the NVIDIA Jetson Nano Developer Kit. This should help with memory pressure issues.
 
+### For Xubuntu or Newer JetPack version using zram as swap
+need to turn swapoff first before adding this swapfile, otherwise it will fail
+```
+# check all the swap files
+sudo swapon --show
+sudo swapoff -a
+bash ./installSwapFile.sh
+```
+then recover all the zram files after install swapfile
+```
+sudo swapon /dev/<zram0-zram3> or any swap listed before this install
+```
+finally reboot the system and check if it works
+```
+sudo swapon --show
+df -h
+free -h
+```
+
+
 ### Setup Swap File
 > installSwapFile.sh - Create a swap file ; Use on external media like USB drive or SSD
 
